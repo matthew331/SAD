@@ -1,3 +1,4 @@
+#include<sys/time.h>
 #include "main.h"
 
 #define depthGain 2
@@ -15,6 +16,14 @@
 // arg4: Picture size Width
 // arg5: Picture size Height
 // arg6: Disparity length
+
+unsigned int getMSTime()
+{
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return tv.tv_sec*1000+tv.tv_usec/1000;
+}
+
 int main(int argc, char * argv[])
 {
 	FILE *fp_L, *fp_R, *fp_Depth;
@@ -56,7 +65,7 @@ int main(int argc, char * argv[])
 
 	if((fp_L = fopen(fileNameL, "rb"))!=NULL)
 	{	    
-		fread(image_L, 1, pictureSize, fp_L);
+		(void)fread(image_L, 1, pictureSize, fp_L);
 		fclose(fp_L);
 		// printf("Close image_L\n");
 	} else {
@@ -65,7 +74,7 @@ int main(int argc, char * argv[])
 
 	if((fp_R = fopen(fileNameR, "rb"))!=NULL)
 	{	    
-		fread(image_R, 1, pictureSize, fp_R);
+		(void)fread(image_R, 1, pictureSize, fp_R);
 		fclose(fp_L);
 		// printf("Close image_R\n");
 	} else {
@@ -81,16 +90,18 @@ int main(int argc, char * argv[])
 	//MedianFilterUC(image_R + ps_width*ps_height,	image_R + ps_width*ps_height,	ps_width, ps_height);
 	//MedianFilterUC(image_R + ps_width*ps_height*2,	image_R + ps_width*ps_height*2,	ps_width, ps_height);
 
+	int t1 = getMSTime();
 	#ifdef _SAD_OPENMP_
 	MP_SAD_CPU(costCube, image_L, image_R, ps_width, ps_height, disparity_length);
 	MP_WinnerTakeAll(depth, costCube, (unsigned short)ps_width, (unsigned short)ps_height, (unsigned char)disparity_length);
-	MP_Gain(depth, depth, ps_width, ps_height, depthGain);
+	MP_Gain(depth, depth, ps_width, ps_height, (unsigned char)depthGain);
 	#else
 	SAD_CPU(costCube, image_L, image_R, ps_width, ps_height, disparity_length);
 	WinnerTakeAll(depth, costCube, (unsigned short)ps_width, (unsigned short)ps_height, (unsigned char)disparity_length);
-	Gain(depth, depth, ps_width, ps_height, depthGain);	
+	Gain(depth, depth, ps_width, ps_height, (unsigned char)depthGain);	
 	#endif
 
+	printf("SAD Time: %d \n", getMSTime() - t1);
 
 	//memcpy(depth, costCube, depthSize);
 
@@ -106,6 +117,7 @@ int main(int argc, char * argv[])
 	if(image_L != NULL) free(image_L);
 	if(image_R != NULL) free(image_R);
 	if(depth != NULL) free(depth);
+	if(costCube != NULL) free(costCube);
 	
 	return 0;
 

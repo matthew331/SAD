@@ -1,6 +1,6 @@
 #include "main.h"
 
-void MP_Gain( short *a_pwDstImageBuf, short *a_pwSrcImageBuf, unsigned short a_uwWidth, unsigned short a_uwHeight, unsigned char a_ucGain)
+void MP_Gain(unsigned short *a_pwDstImageBuf, unsigned short *a_pwSrcImageBuf, int a_uwWidth, int a_uwHeight, unsigned char a_ucGain)
 {
 	int index_i, index_j;
 

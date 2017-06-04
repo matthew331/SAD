@@ -3,7 +3,7 @@
 #define PIX_SORT( a, b) { if ((a)>(b)) PIX_SWAP((a),(b)); }
 #define PIX_SWAP( a, b) { unsigned char temp=(a);(a)=(b);(b)=temp; }
 
-void Gain(unsigned short *a_pwDstImageBuf, unsigned short *a_pwSrcImageBuf, unsigned short a_uwWidth, unsigned short a_uwHeight, unsigned char a_ucGain)
+void Gain(unsigned short *a_pwDstImageBuf, unsigned short *a_pwSrcImageBuf, int a_uwWidth, int a_uwHeight, unsigned char a_ucGain)
 {
 	int index_i, index_j;
 	

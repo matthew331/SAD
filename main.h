@@ -17,9 +17,11 @@
 
 void SAD_CPU(unsigned short *mCostBuf, char *imgSrcL, char *imgSrcR, int srcWidth, int srcHeight, int disparityRange);
 void WinnerTakeAll(unsigned short *a_pwDisparityBuf, unsigned short *a_pwCost, int a_uwWidth, int a_uwHeight, int a_ptDisparity);
+void Gain(unsigned short *a_pwDstImageBuf, unsigned short *a_pwSrcImageBuf, int a_uwWidth, int a_uwHeight, unsigned char a_ucGain);
 
 void MP_SAD_CPU(unsigned short *mCostBuf, char *imgSrcL, char *imgSrcR, int srcWidth, int srcHeight, int disparityRange);
 void MP_WinnerTakeAll(unsigned short *a_pwDisparityBuf, unsigned short *a_pwCost, int a_uwWidth, int a_uwHeight, int a_ptDisparity);
+void MP_Gain(unsigned short *a_pwDstImageBuf, unsigned short *a_pwSrcImageBuf, int a_uwWidth, int a_uwHeight, unsigned char a_ucGain);
 
 
 #endif
