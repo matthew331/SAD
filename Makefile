@@ -59,7 +59,6 @@ all:
 
 run: run1 run2 run3 run4 run5 run6
 
-
 run1:
 	@echo ======== run 1 =======
 	@./$(EXE_FILE) $(INPUT_PIC_LEFT1) $(INPUT_PIC_RIGHT1) $(OUTPUT_DEPTH_MAP1) $(PIC_SIZE_WIDTH1) $(PIC_SIZE_HEIGHT1) $(DISPARITY_LENGHT)
