@@ -63,7 +63,7 @@ void MP_SAD_CPU(unsigned short *mCostBuf, char *imgSrcL, char *imgSrcR, int srcW
 
 	// printf("%s\n", __func__);
 	
-	#pragma omp parallel for private(index_height, index_width, disp)
+	#pragma omp parallel for private(index_height, index_width, disp, ucSum_Y,ucSum_Cb,ucSum_Cr)
 	for ( index_height = 0; index_height < srcHeight; index_height++)
 	{
 		for ( index_width = 0; index_width < srcWidth; index_width++)
