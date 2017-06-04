@@ -121,7 +121,7 @@ int main(int argc, char * argv[])
 	if((fp_Depth = fopen(fileNameDepth, "wb"))!=NULL)
 	{	    
 		fwrite(depth, 1, depthSize, fp_Depth);
-		fclose(fp_L);
+		fclose(fp_Depth);
 		// printf("Close depth\n");
 	} else {
 		printf("Open depth failed!\n");
