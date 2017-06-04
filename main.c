@@ -10,6 +10,7 @@
 #define PICTURE_SIZE_WIDTH 4
 #define PICTURE_SIZE_HEIGHT 5
 #define DISPARITY_LENGHT 6
+#define NUM_OF_THREADS_USED 7
 // arg1: L file name
 // arg2: R file name
 // arg3: Depth file name
@@ -32,10 +33,18 @@ int main(int argc, char * argv[])
 	char *image_L, *image_R;
 	unsigned short *costCube, *depth;
 	int pictureSize, depthSize;
+	
+	#ifdef _SAD_OPENMP_
+	int numOfThreads;
+	#endif
 
 	char *fileNameL, *fileNameR, *fileNameDepth;
 
+	#ifdef _SAD_OPENMP_
+	if(argc != 8) return 0;
+	#else
 	if(argc != 7) return 0;
+	#endif
 
 	fileNameL = argv[L_FILE_NAME];
 	fileNameR = argv[R_FILE_NAME];
@@ -43,6 +52,9 @@ int main(int argc, char * argv[])
 	ps_width = atoi(argv[PICTURE_SIZE_WIDTH]);
 	ps_height = atoi(argv[PICTURE_SIZE_HEIGHT]);
 	disparity_length = atoi(argv[DISPARITY_LENGHT]);
+	#ifdef _SAD_OPENMP_
+	numOfThreads = atoi(argv[NUM_OF_THREADS_USED]);
+	#endif
 
 	// printf("L_IMG [%s] \n", fileNameL);
 	// printf("R_IMG [%s] \n", fileNameR);
@@ -92,6 +104,7 @@ int main(int argc, char * argv[])
 
 	int t1 = getMSTime();
 	#ifdef _SAD_OPENMP_
+	omp_set_num_threads(numOfThreads);
 	MP_SAD_CPU(costCube, image_L, image_R, ps_width, ps_height, disparity_length);
 	MP_WinnerTakeAll(depth, costCube, (unsigned short)ps_width, (unsigned short)ps_height, (unsigned char)disparity_length);
 	MP_Gain(depth, depth, ps_width, ps_height, (unsigned char)depthGain);
