@@ -35,30 +35,30 @@ int main(int argc, char * argv[])
 	ps_height = atoi(argv[PICTURE_SIZE_HEIGHT]);
 	disparity_length = atoi(argv[DISPARITY_LENGHT]);
 
-	printf("L_IMG [%s] \n", fileNameL);
-	printf("R_IMG [%s] \n", fileNameR);
-	printf("Depth [%s] \n", fileNameDepth);
-	printf("SIZE [%dx%d] \n", ps_width, ps_height);
-	printf("Disparity Length [%d] \n", disparity_length);
+	// printf("L_IMG [%s] \n", fileNameL);
+	// printf("R_IMG [%s] \n", fileNameR);
+	// printf("Depth [%s] \n", fileNameDepth);
+	// printf("SIZE [%dx%d] \n", ps_width, ps_height);
+	// printf("Disparity Length [%d] \n", disparity_length);
 	
 	
 	pictureSize = ps_width * ps_height * 3;
 	depthSize = sizeof(unsigned short) * ps_width * ps_height;
 
-	printf("Allocate imageL\n");
+	// printf("Allocate imageL\n");
 	image_L = (char *)malloc(pictureSize);
-	printf("Allocate imageR\n");
+	// printf("Allocate imageR\n");
 	image_R = (char *)malloc(pictureSize);
-	printf("Allocate Depth\n");
+	// printf("Allocate Depth\n");
 	depth = (unsigned short *)malloc(depthSize);
-	printf("Allocate Cost Cube\n");
+	// printf("Allocate Cost Cube\n");
 	costCube = (unsigned short *)malloc(depthSize * disparity_length);
 
 	if((fp_L = fopen(fileNameL, "rb"))!=NULL)
 	{	    
 		fread(image_L, 1, pictureSize, fp_L);
 		fclose(fp_L);
-		printf("Close image_L\n");
+		// printf("Close image_L\n");
 	} else {
 		printf("Open image_L failed!\n");
 	}
@@ -67,7 +67,7 @@ int main(int argc, char * argv[])
 	{	    
 		fread(image_R, 1, pictureSize, fp_R);
 		fclose(fp_L);
-		printf("Close image_R\n");
+		// printf("Close image_R\n");
 	} else {
 		printf("Open image_R failed!\n");
 	}
@@ -98,7 +98,7 @@ int main(int argc, char * argv[])
 	{	    
 		fwrite(depth, 1, depthSize, fp_Depth);
 		fclose(fp_L);
-		printf("Close depth\n");
+		// printf("Close depth\n");
 	} else {
 		printf("Open depth failed!\n");
 	}

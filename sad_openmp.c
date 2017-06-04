@@ -4,7 +4,7 @@ void MP_Gain( short *a_pwDstImageBuf, short *a_pwSrcImageBuf, unsigned short a_u
 {
 	int index_i, index_j;
 
-	printf("%s\n", __func__);
+	// printf("%s\n", __func__);
 	
 	#pragma omp parallel for private(index_i, index_j)
 	for ( index_i = 0; index_i < a_uwHeight; index_i++)
@@ -26,7 +26,7 @@ void MP_WinnerTakeAll(unsigned short *a_pwDisparityBuf, unsigned short *a_pwCost
 
 	int index_i, index_j;
 
-	printf("%s\n", __func__);
+	// printf("%s\n", __func__);
 
 	#pragma omp parallel for private(index_i, index_j)
 	for(index_i = 0; index_i < imSize; index_i++)
@@ -61,7 +61,7 @@ void MP_SAD_CPU(unsigned short *mCostBuf, char *imgSrcL, char *imgSrcR, int srcW
 
 	unsigned char ucSum_Y,ucSum_Cb,ucSum_Cr;
 
-	printf("%s\n", __func__);
+	// printf("%s\n", __func__);
 	
 	#pragma omp parallel for private(index_height, index_width, disp)
 	for ( index_height = 0; index_height < srcHeight; index_height++)
