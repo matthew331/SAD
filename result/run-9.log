@@ -1,0 +1,60 @@
+======== run 1 =======
+SAD Time: 95 
+#export OMP_NUM_THREADS=2
+SAD Time: 53 
+#export OMP_NUM_THREADS=4
+SAD Time: 56 
+#export OMP_NUM_THREADS=6
+SAD Time: 38 
+#export OMP_NUM_THREADS=8
+SAD Time: 32 
+======== run 2 =======
+SAD Time: 113 
+export OMP_NUM_THREADS=2
+SAD Time: 79 
+export OMP_NUM_THREADS=4
+SAD Time: 35 
+export OMP_NUM_THREADS=6
+SAD Time: 62 
+export OMP_NUM_THREADS=8
+SAD Time: 38 
+======== run 3 =======
+SAD Time: 230 
+export OMP_NUM_THREADS=2
+SAD Time: 118 
+export OMP_NUM_THREADS=4
+SAD Time: 130 
+export OMP_NUM_THREADS=6
+SAD Time: 85 
+export OMP_NUM_THREADS=8
+SAD Time: 94 
+======== run 4 =======
+SAD Time: 387 
+export OMP_NUM_THREADS=2
+SAD Time: 222 
+export OMP_NUM_THREADS=4
+SAD Time: 128 
+export OMP_NUM_THREADS=6
+SAD Time: 166 
+export OMP_NUM_THREADS=8
+SAD Time: 149 
+======== run 5 =======
+SAD Time: 881 
+export OMP_NUM_THREADS=2
+SAD Time: 520 
+export OMP_NUM_THREADS=4
+SAD Time: 294 
+export OMP_NUM_THREADS=6
+SAD Time: 341 
+export OMP_NUM_THREADS=8
+SAD Time: 299 
+======== run 6 =======
+SAD Time: 3763 
+export OMP_NUM_THREADS=2
+SAD Time: 2296 
+export OMP_NUM_THREADS=4
+SAD Time: 2247 
+export OMP_NUM_THREADS=6
+SAD Time: 1626 
+export OMP_NUM_THREADS=8
+SAD Time: 1178 
